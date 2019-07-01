@@ -28,9 +28,9 @@ app.controller("busquedaClientesCtrl", function ($scope, $http) {
 app.controller("ctrlCargaCliente", function ($scope, $http) {
     $scope.tipos = [];
     $scope.tiposConvenioIIBB = [];
+    $scope.tiposConvenioComEInd = [];
     $scope.nuevoCliente = {};
     $scope.nuevoCliente.percepcionIIBB = 0;
-    $scope.tiposConvenioComEInd = [];
     $scope.nuevoCliente.percepcionComEInd = 0;
     
 
