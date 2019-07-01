@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestionClientesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoCliente" Type="int" Nullable="false" />
+          <Property Name="percepcionIIBB" Type="int" />
+          <Property Name="idTipoConvenioIIBB" Type="int" Nullable="false" />
+          <Property Name="percepcionComEInd" Type="int" />
+          <Property Name="idTipoConvenioComEInd" Type="int" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="razonSocial" Type="varchar" MaxLength="50" />
+          <Property Name="cuit" Type="int" Nullable="false" />
+          <Property Name="ingBrutos" Type="int" Nullable="false" />
+          <Property Name="domicilio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="localidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="habilitado" Type="int" Nullable="false" />
+          <Property Name="pagoCtaCte" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoCliente">
+          <Key>
+            <PropertyRef Name="idTipoCliente" />
+          </Key>
+          <Property Name="idTipoCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoConvenioComEInd">
+          <Key>
+            <PropertyRef Name="idTipoConvenioComEInd" />
+          </Key>
+          <Property Name="idTipoConvenioComEInd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoConvenioIIBB">
+          <Key>
+            <PropertyRef Name="idTipoConvenioIIBB" />
+          </Key>
+          <Property Name="idTipoConvenioIIBB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cliente__idTipoC__0CBAE877">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="idTipoCliente" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__idTipoC__0DAF0CB0">
+          <End Role="TipoConvenioIIBB" Type="Self.TipoConvenioIIBB" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConvenioIIBB">
+              <PropertyRef Name="idTipoConvenioIIBB" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTipoConvenioIIBB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__idTipoC__0EA330E9">
+          <End Role="TipoConvenioComEInd" Type="Self.TipoConvenioComEInd" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConvenioComEInd">
+              <PropertyRef Name="idTipoConvenioComEInd" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTipoConvenioComEInd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionClientesModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoCliente" EntityType="Self.TipoCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoConvenioComEInd" EntityType="Self.TipoConvenioComEInd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoConvenioIIBB" EntityType="Self.TipoConvenioIIBB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cliente__idTipoC__0CBAE877" Association="Self.FK__Cliente__idTipoC__0CBAE877">
+            <End Role="TipoCliente" EntitySet="TipoCliente" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__idTipoC__0DAF0CB0" Association="Self.FK__Cliente__idTipoC__0DAF0CB0">
+            <End Role="TipoConvenioIIBB" EntitySet="TipoConvenioIIBB" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__idTipoC__0EA330E9" Association="Self.FK__Cliente__idTipoC__0EA330E9">
+            <End Role="TipoConvenioComEInd" EntitySet="TipoConvenioComEInd" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionClientesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoCliente" Type="Int32" Nullable="false" />
+          <Property Name="percepcionIIBB" Type="Int32" />
+          <Property Name="idTipoConvenioIIBB" Type="Int32" Nullable="false" />
+          <Property Name="percepcionComEInd" Type="Int32" />
+          <Property Name="idTipoConvenioComEInd" Type="Int32" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="razonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cuit" Type="Int32" Nullable="false" />
+          <Property Name="ingBrutos" Type="Int32" Nullable="false" />
+          <Property Name="domicilio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="localidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="habilitado" Type="Int32" Nullable="false" />
+          <Property Name="pagoCtaCte" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoCliente" Relationship="Self.FK__Cliente__idTipoC__0CBAE877" FromRole="Cliente" ToRole="TipoCliente" />
+          <NavigationProperty Name="TipoConvenioIIBB" Relationship="Self.FK__Cliente__idTipoC__0DAF0CB0" FromRole="Cliente" ToRole="TipoConvenioIIBB" />
+          <NavigationProperty Name="TipoConvenioComEInd" Relationship="Self.FK__Cliente__idTipoC__0EA330E9" FromRole="Cliente" ToRole="TipoConvenioComEInd" />
+        </EntityType>
+        <EntityType Name="TipoCliente">
+          <Key>
+            <PropertyRef Name="idTipoCliente" />
+          </Key>
+          <Property Name="idTipoCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__idTipoC__0CBAE877" FromRole="TipoCliente" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="TipoConvenioComEInd">
+          <Key>
+            <PropertyRef Name="idTipoConvenioComEInd" />
+          </Key>
+          <Property Name="idTipoConvenioComEInd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__idTipoC__0EA330E9" FromRole="TipoConvenioComEInd" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="TipoConvenioIIBB">
+          <Key>
+            <PropertyRef Name="idTipoConvenioIIBB" />
+          </Key>
+          <Property Name="idTipoConvenioIIBB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__idTipoC__0DAF0CB0" FromRole="TipoConvenioIIBB" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK__Cliente__idTipoC__0CBAE877">
+          <End Role="TipoCliente" Type="Self.TipoCliente" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCliente">
+              <PropertyRef Name="idTipoCliente" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__idTipoC__0DAF0CB0">
+          <End Role="TipoConvenioIIBB" Type="Self.TipoConvenioIIBB" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConvenioIIBB">
+              <PropertyRef Name="idTipoConvenioIIBB" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTipoConvenioIIBB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__idTipoC__0EA330E9">
+          <End Role="TipoConvenioComEInd" Type="Self.TipoConvenioComEInd" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoConvenioComEInd">
+              <PropertyRef Name="idTipoConvenioComEInd" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTipoConvenioComEInd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionClientesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="TipoCliente" EntityType="Self.TipoCliente" />
+          <EntitySet Name="TipoConvenioComEInd" EntityType="Self.TipoConvenioComEInd" />
+          <EntitySet Name="TipoConvenioIIBB" EntityType="Self.TipoConvenioIIBB" />
+          <AssociationSet Name="FK__Cliente__idTipoC__0CBAE877" Association="Self.FK__Cliente__idTipoC__0CBAE877">
+            <End Role="TipoCliente" EntitySet="TipoCliente" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__idTipoC__0DAF0CB0" Association="Self.FK__Cliente__idTipoC__0DAF0CB0">
+            <End Role="TipoConvenioIIBB" EntitySet="TipoConvenioIIBB" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__idTipoC__0EA330E9" Association="Self.FK__Cliente__idTipoC__0EA330E9">
+            <End Role="TipoConvenioComEInd" EntitySet="TipoConvenioComEInd" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionClientesModelStoreContainer" CdmEntityContainer="GestionClientesEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="GestionClientesModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
+                <ScalarProperty Name="percepcionIIBB" ColumnName="percepcionIIBB" />
+                <ScalarProperty Name="idTipoConvenioIIBB" ColumnName="idTipoConvenioIIBB" />
+                <ScalarProperty Name="percepcionComEInd" ColumnName="percepcionComEInd" />
+                <ScalarProperty Name="idTipoConvenioComEInd" ColumnName="idTipoConvenioComEInd" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="cuit" ColumnName="cuit" />
+                <ScalarProperty Name="ingBrutos" ColumnName="ingBrutos" />
+                <ScalarProperty Name="domicilio" ColumnName="domicilio" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="habilitado" ColumnName="habilitado" />
+                <ScalarProperty Name="pagoCtaCte" ColumnName="pagoCtaCte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoCliente">
+            <EntityTypeMapping TypeName="GestionClientesModel.TipoCliente">
+              <MappingFragment StoreEntitySet="TipoCliente">
+                <ScalarProperty Name="idTipoCliente" ColumnName="idTipoCliente" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoConvenioComEInd">
+            <EntityTypeMapping TypeName="GestionClientesModel.TipoConvenioComEInd">
+              <MappingFragment StoreEntitySet="TipoConvenioComEInd">
+                <ScalarProperty Name="idTipoConvenioComEInd" ColumnName="idTipoConvenioComEInd" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoConvenioIIBB">
+            <EntityTypeMapping TypeName="GestionClientesModel.TipoConvenioIIBB">
+              <MappingFragment StoreEntitySet="TipoConvenioIIBB">
+                <ScalarProperty Name="idTipoConvenioIIBB" ColumnName="idTipoConvenioIIBB" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

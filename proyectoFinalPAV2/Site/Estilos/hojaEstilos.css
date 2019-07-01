@@ -1,0 +1,30 @@
+﻿* {
+
+}
+
+body {
+    background-image: url('../Imagenes/sistemaCRM.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100% cover;
+    background-size: cover;
+}
+
+.lblBienvenida {
+    font-family: 'Comic Sans MS';
+    font-size: larger;
+    font-style: inherit;
+}
+
+.Pictures1 {
+    text-align: center;
+    display: inline-block;
+}
+
+.DatosClientes, .NuevoCliente, .BusquedaCliente {
+    background-color: #FFFFFF;
+    border: solid;
+}
+
+.asterisco {
+    color: red;
+}
