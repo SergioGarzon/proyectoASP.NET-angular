@@ -28,7 +28,8 @@ app.controller("busquedaClientesCtrl", function ($scope, $http) {
 app.controller("ctrlCargaCliente", function ($scope, $http) {
     $scope.tipos = [];
     $scope.accionABMC = 'L';
-    $scope.tipoCliente = null;
+    $scope.nuevoCliente = {};
+    $scope.nuevoCliente.percepcionIIBB = 0;
 
     $scope.obtenerTipoCliente = function () {
         $http({
@@ -60,13 +61,21 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
         });
     };
 
-    $scope.onTipoClienteChange = function () {
-        if ($scope.tipoCliente == 1) {
-            //consumidor final
-            
-        } else {
-            $scope.obtenerTipoConvenioIIBB();
+    function obtenerTipoIIBB() {        
+        if ($scope.tipoCliente.idTipoCliente != 1) {
+            if ($scope.tipoConvenio.length == 0)
+                $scope.obtenerTipoConvenioIIBB();
         }
+    }
+
+    $scope.tipoIIBBChange = function () {
+        if (!$scope.nuevoCliente.percepcionIIBB) {
+            $scope.nuevoCliente.idTipoConvenioIIBB = null;
+        }
+    }
+
+    $scope.tipoClienteChange = function () {
+        obtenerTipoIIBB();
     }
     
     /*

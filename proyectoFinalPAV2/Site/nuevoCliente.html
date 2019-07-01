@@ -62,7 +62,7 @@
                 background-color: #45a049;
             }*/
 
-        #consFinalFactura {
+        #nuevoClienteFactura {
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 20px;
@@ -84,60 +84,60 @@
             </div>
             <div class="divOpcionSelector form-group panel-body">
                 <label>Tipo de Cliente:</label>
-                <select style="width:200px;" ng-model="tipoCliente" ng-options="x.descripcion for x in tipos track by x.idTipoCliente"></select>
+                <select style="width:200px;" ng-model="tipoCliente" ng-options="x.descripcion for x in tipos track by x.idTipoCliente" ng-change="tipoClienteChange()"></select>
             </div>
         </div>
         <div class="panel panel-default">
 
             <form name="myForm">
 
-                <input type="hidden" value="{{tipoCliente.idTipoCliente}}" ng-model="resto.idTipoCliente" />
+                <input type="hidden" value="{{tipoCliente.idTipoCliente}}" ng-model="nuevoCliente.idTipoCliente" />
 
                 <div id="ConsumidorFinal" ng-show="tipoCliente.idTipoCliente == 1">
                     <table>
                         <tr>
                             <td>Apellido:<span class="asterisco">*</span></td>
-                            <td><input type="text" value="" ng-model="consFinal.apellido" /></td>
+                            <td><input type="text" value="" ng-model="nuevoCliente.apellido" /></td>
                         </tr>
 
                         <tr>
                             <td>Nombre:<span class="asterisco">*</span></td>
-                            <td><input type="text" value="" ng-model="consFinal.nombre" /></td>
+                            <td><input type="text" value="" ng-model="nuevoCliente.nombre" /></td>
                         </tr>
 
                         <tr>
                             <td>DNI:<span class="asterisco">*</span></td>
-                            <td><input type="number" value="" ng-model="consFinal.cuit" /></td>
+                            <td><input type="number" value="" ng-model="nuevoCliente.cuit" /></td>
                         </tr>
 
                         <tr>
                             <td>Domicilio: <span class="asterisco">*</span></td>
-                            <td><input type="text" value="" ng-model="consFinal.domicilio" /></td>
+                            <td><input type="text" value="" ng-model="nuevoCliente.domicilio" /></td>
                         </tr>
 
                         <tr>
                             <td>Email:<span class="asterisco">*</span></td>
-                            <td><input type="text" value="" ng-model="consFinal.email" /></td>
+                            <td><input type="text" value="" ng-model="nuevoCliente.email" /></td>
                         </tr>
 
                         <tr>
                             <td>Localidad: </td>
-                            <td><input type="text" value="" ng-model="consFinal.localidad" /></td>
+                            <td><input type="text" value="" ng-model="nuevoCliente.localidad" /></td>
                         </tr>
 
                         <tr>
                             <td>Ingrese el telefono:</td>
-                            <td><input type="text" value="" ng-model="consFinal.telefono" /></td>
+                            <td><input type="text" value="" ng-model="nuevoCliente.telefono" /></td>
                         </tr>
 
                         <tr>
                             <td>Habilitado:</td>
-                            <td><input type="checkbox" name="chkHabilitado" value="" ng-model="consFinal.habilitado" /></td>
+                            <td><input type="checkbox" name="chkHabilitado" value="" ng-model="nuevoCliente.habilitado" /></td>
                         </tr>
 
                         <tr>
                             <td>Pago CtaCte:</td>
-                            <td><input type="checkbox" name="chkPagoCtaCte" value="" ng-model="consFinal.pagoCtaCte" /></td>
+                            <td><input type="checkbox" name="chkPagoCtaCte" value="" ng-model="nuevoCliente.pagoCtaCte" /></td>
                         </tr>
 
                         <tr>
@@ -157,71 +157,71 @@
                     <table>
                         <tr>
                             <td>Percepcion IIBB:</td>
-                            <td><input type="checkbox" ng-model="resto.percepcionIIBB" name="chkPercepcionIIBB" /></td>
+                            <td><input type="checkbox" ng-model="nuevoCliente.percepcionIIBB" name="chkPercepcionIIBB" ng-checked="tipoIIBBChange()" /></td>
                         </tr>
 
                         <tr>
                             <td>Tipo Convenio IIBB:</td>
                             <td>
-                                <select ng-model="resto.idTipoConvenioIIBB" ng-options="y.descripcion for (x, y) in tipoConvenio"></select>
+                                <select ng-model="nuevoCliente.idTipoConvenioIIBB" ng-options="y.descripcion for (x, y) in tipoConvenio" ng-disabled="nuevoCliente.percepcionIIBB == 0"></select>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Percepcion Com. e Ind.</td>
-                            <td><input type="checkbox" name="" ng-model="resto.percepcionComEInd" /></td>
+                            <td><input type="checkbox" name="" ng-model="nuevoCliente.percepcionComEInd" /></td>
                         </tr>
 
                         <tr>
                             <td>Tipo Convenio Com. e Ind.</td>
                             <td>
-                                <select ng-model="resto.idTipoConvenioComEInd" ng-options="y.descripcion for (x, y) in tipoConvenioComEInd"></select>
+                                <select ng-model="nuevoCliente.idTipoConvenioComEInd" ng-options="y.descripcion for (x, y) in tipoConvenioComEInd"></select>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Raz&oacute;n Social:<span class="asterisco">*</span></td>
-                            <td><input type="text" ng-model="resto.razonSocial" name="txtRazonSocial" required />
+                            <td><input type="text" ng-model="nuevoCliente.razonSocial" name="txtRazonSocial" required />
                         </tr>
 
                         <tr>
                             <td>CUIT:<span class="asterisco">*</span></td>
-                            <td><input type="text" ng-model="resto.cuit" name="txtRazonSocial" requiered /></td>
+                            <td><input type="text" ng-model="nuevoCliente.cuit" name="txtRazonSocial" requiered /></td>
                         </tr>
 
                         <tr>
                             <td>Ingr.Brutos:<span class="asterisco">*</span></td>
-                            <td><input type="text" ng-model="resto.ingBrutos" name="txtIngresosBrutos" requiered /></td>
+                            <td><input type="text" ng-model="nuevoCliente.ingBrutos" name="txtIngresosBrutos" requiered /></td>
                         </tr>
 
                         <tr>
                             <td>Domicilio:<span class="asterisco">*</span></td>
-                            <td><input type="text" ng-model="resto.domicilio" name="txtDomicilio" required /></td>
+                            <td><input type="text" ng-model="nuevoCliente.domicilio" name="txtDomicilio" required /></td>
                         </tr>
 
                         <tr>
                             <td>Email:<span class="asterisco">*</span></td>
-                            <td><input type="text" ng-model="resto.email" name="txtEmail" requiered /></td>
+                            <td><input type="text" ng-model="nuevoCliente.email" name="txtEmail" requiered /></td>
                         </tr>
 
                         <tr>
                             <td>Localidad:<span class="asterisco">*</span> </td>
-                            <td><input type="text" ng-model="resto.localidad" name="txtLocalidad" requiered /></td>
+                            <td><input type="text" ng-model="nuevoCliente.localidad" name="txtLocalidad" requiered /></td>
                         </tr>
 
                         <tr>
                             <td>Telefono:<span class="asterisco">*</span> </td>
-                            <td><input type="text" ng-model="resto.telefono" name="txtTelefono" requiered /></td>
+                            <td><input type="text" ng-model="nuevoCliente.telefono" name="txtTelefono" requiered /></td>
                         </tr>
 
                         <tr>
                             <td>Habilitado:</td>
-                            <td><input type="checkbox" ng-model="resto.habilitado" name="chkHabilitado" /></td>
+                            <td><input type="checkbox" ng-model="nuevoCliente.habilitado" name="chkHabilitado" /></td>
                         </tr>
 
                         <tr>
                             <td>Pago CtaCte: </td>
-                            <td><input type="checkbox" ng-model="resto.pagoCtaCte" name="chkPagoCtaCte" /></td>
+                            <td><input type="checkbox" ng-model="nuevoCliente.pagoCtaCte" name="chkPagoCtaCte" /></td>
                         </tr>
 
                         <tr>
