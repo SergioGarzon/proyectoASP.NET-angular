@@ -59,9 +59,15 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
             alert('Ocurrió un error');
         });
     };
-    $scope.obtenerTipoConvenioIIBB();
 
-    
+    $scope.onTipoClienteChange = function () {
+        if ($scope.tipoCliente == 1) {
+            //consumidor final
+            
+        } else {
+            $scope.obtenerTipoConvenioIIBB();
+        }
+    }
     
     /*
     $scope.tipoConvenioComEInd = [];
