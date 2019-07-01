@@ -27,9 +27,11 @@ app.controller("busquedaClientesCtrl", function ($scope, $http) {
 
 app.controller("ctrlCargaCliente", function ($scope, $http) {
     $scope.tipos = [];
-    $scope.accionABMC = 'L';
+    $scope.tiposConvenioIIBB = [];
     $scope.nuevoCliente = {};
     $scope.nuevoCliente.percepcionIIBB = 0;
+    $scope.tiposConvenioComEInd = [];
+    $scope.nuevoCliente.percepcionComEInd = 0;
     
 
     $scope.obtenerTipoCliente = function () {
@@ -44,18 +46,13 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
             alert('Ocurrió un error');
         });
     };
-    $scope.obtenerTipoCliente();
-
-    
-    $scope.tipoConvenio = [];
-    $scope.accionABMC = 'L';
 
     $scope.obtenerTipoConvenioIIBB = function () {
         $http({
             method: 'GET',
             url: $scope.server + 'TipoConvenioIIBBs'
         }).then(function (res) {
-            $scope.tipoConvenio = res.data;
+            $scope.tiposConvenioIIBB = res.data;
         }, function (err) {
             console.log(err);
             alert('Ocurrió un error');
@@ -63,10 +60,8 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
     };
 
     function obtenerTipoIIBB() {        
-        if ($scope.tipoCliente.idTipoCliente != 1) {
-            if ($scope.tipoConvenio.length == 0)
-                $scope.obtenerTipoConvenioIIBB();
-        }
+        if ($scope.tiposConvenioIIBB.length == 0)
+            $scope.obtenerTipoConvenioIIBB();
     }
 
     $scope.tipoIIBBChange = function () {
@@ -75,15 +70,12 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
         }
     }
 
-    $scope.tipoConvenioComEInd = 0;
-    $scope.nuevoCliente.percepcionComEInd = 0;
-
     $scope.obtenerTipoConvenioComEInd = function () {
         $http({
             method: 'GET',
             url: $scope.server + 'TipoConvenioComEInds'
         }).then(function (res) {
-            $scope.tipoConvenioComEInd = res.data;
+            $scope.tiposConvenioComEInd = res.data;
         }, function (err) {
             console.log(err);
             alert('Ocurrió un error');
@@ -91,10 +83,8 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
     };
 
     function obtenerTipoConvenioComEInd() {
-        if ($scope.tipoCliente.idTipoCliente != 1) {
-            if ($scope.tipoConvenioComEInd.length == 0)
-                $scope.obtenerTipoConvenioComEInd();
-        }
+        if ($scope.tiposConvenioComEInd.length == 0)
+            $scope.obtenerTipoConvenioComEInd();
     }
 
     $scope.tipoConvenioComEIndChange = function () {
@@ -105,29 +95,13 @@ app.controller("ctrlCargaCliente", function ($scope, $http) {
 
 
     $scope.tipoClienteChange = function () {
-        obtenerTipoIIBB();
+        if ($scope.tipoCliente.idTipoCliente != 1) {
+            obtenerTipoIIBB();
+            obtenerTipoConvenioComEInd();
+        }
     }
 
-    
-
-   
-
-    /*
-    $scope.tipoConvenioComEInd = [];
-    scope.accionABMC = 'L';
-
-    $scope.obtenerTipoConvenioComEInd = function () {
-        $http({
-            method: 'GET',
-            url: $scope.server + 'TipoConvenioComEInds'
-        }).then(function (res) {
-            $scope.tipoConvenioComEInd = res.data;
-        }, function (err) {
-            console.log(err);
-            alert('Ocurrió un error');
-        });
-    };
-    $scope.obtenerTipoConvenioComEInd();*/
+    $scope.obtenerTipoCliente();
 });
 
 
